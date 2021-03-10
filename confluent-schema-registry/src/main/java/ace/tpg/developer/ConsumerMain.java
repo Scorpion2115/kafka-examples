@@ -1,2 +1,4 @@
-package ace.tpg.developer;public class ConsumerMain {
+package ace.tpg.developer;
+
+public class ConsumerMain {
 }
