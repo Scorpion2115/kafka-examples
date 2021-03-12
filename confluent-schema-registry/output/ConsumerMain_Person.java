@@ -1,11 +1,7 @@
 package ace.tpg.developer;
-
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
@@ -28,26 +24,21 @@ public class ConsumerMain {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 
-        KafkaConsumer<String, Purchase> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singletonList("inventory_purchases"));
+        KafkaConsumer<String, Person> consumer = new KafkaConsumer<>(props);
+        consumer.subscribe(Collections.singletonList("employees"));
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./output/record.txt", true));
-            while (true) {
-                // use consumer.poll to pull back the collection of consumer records
-                final ConsumerRecords<String, Purchase> records = consumer.poll(Duration.ofMillis(100));
-                // loop through to process each record individually
-                for (final ConsumerRecord<String, Purchase> record : records) {
-                    final String key = record.key();
-                    final Purchase value = record.value();
-                    String outputString = "key=" + key + ", value=" + value;
-                    System.out.println(outputString);
-                    writer.write(outputString + "\n");
-                }
-                writer.flush();
+
+        // A infinite loop to keep consumer running
+        while (true) {
+            // use consumer.poll to pull back the collection of consumer records
+            final ConsumerRecords<String, Person> records = consumer.poll(Duration.ofMillis(100));
+
+            // loop through to process each record individually
+            for (final ConsumerRecord<String, Person> record : records) {
+                final String key = record.key();
+                final Person value = record.value();
+                System.out.println("key=" + key + ", value=" + value);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }

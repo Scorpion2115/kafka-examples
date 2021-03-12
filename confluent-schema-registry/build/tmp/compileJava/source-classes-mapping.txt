@@ -5,5 +5,8 @@ ace/tpg/developer/ConsumerMain.java
  ace.tpg.developer.ConsumerMain
 ace/tpg/developer/Main.java
  ace.tpg.developer.Main
+ace/tpg/developer/Purchase.java
+ ace.tpg.developer.Purchase
+ ace.tpg.developer.Purchase$Builder
 ace/tpg/developer/ProducerMain.java
  ace.tpg.developer.ProducerMain

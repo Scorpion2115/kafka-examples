@@ -1,0 +1,5 @@
+key=1, value={"id": 1, "product": "apples", "quantity": 17}
+key=2, value={"id": 2, "product": "oranges", "quantity": 5}
+key=1, value={"id": 1, "product": "apples", "quantity": 17}
+key=2, value={"id": 2, "product": "oranges", "quantity": 5}
+key=3, value={"id": 3, "product": "bananas", "quantity": 21}

@@ -10,13 +10,14 @@ import org.apache.avro.specific.SpecificData;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Person extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -1446579700070028993L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"ace.tpg.developer\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"email\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  private static final long serialVersionUID = 8961973462382934704L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"ace.tpg.developer\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"first_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"last_name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"email\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"team\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"default\":\"legend\"}],\"compatibility\":\"BACKWARD\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public int id;
   @Deprecated public java.lang.String first_name;
   @Deprecated public java.lang.String last_name;
   @Deprecated public java.lang.String email;
+  @Deprecated public java.lang.String team;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -31,12 +32,14 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param first_name The new value for first_name
    * @param last_name The new value for last_name
    * @param email The new value for email
+   * @param team The new value for team
    */
-  public Person(java.lang.Integer id, java.lang.String first_name, java.lang.String last_name, java.lang.String email) {
+  public Person(java.lang.Integer id, java.lang.String first_name, java.lang.String last_name, java.lang.String email, java.lang.String team) {
     this.id = id;
     this.first_name = first_name;
     this.last_name = last_name;
     this.email = email;
+    this.team = team;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
@@ -47,6 +50,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     case 1: return first_name;
     case 2: return last_name;
     case 3: return email;
+    case 4: return team;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -59,6 +63,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     case 1: first_name = (java.lang.String)value$; break;
     case 2: last_name = (java.lang.String)value$; break;
     case 3: email = (java.lang.String)value$; break;
+    case 4: team = (java.lang.String)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -128,6 +133,22 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
   }
 
   /**
+   * Gets the value of the 'team' field.
+   * @return The value of the 'team' field.
+   */
+  public java.lang.String getTeam() {
+    return team;
+  }
+
+  /**
+   * Sets the value of the 'team' field.
+   * @param value the value to set.
+   */
+  public void setTeam(java.lang.String value) {
+    this.team = value;
+  }
+
+  /**
    * Creates a new Person RecordBuilder.
    * @return A new Person RecordBuilder
    */
@@ -163,6 +184,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     private java.lang.String first_name;
     private java.lang.String last_name;
     private java.lang.String email;
+    private java.lang.String team;
 
     /** Creates a new Builder */
     private Builder() {
@@ -191,6 +213,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
         this.email = data().deepCopy(fields()[3].schema(), other.email);
         fieldSetFlags()[3] = true;
       }
+      if (isValidValue(fields()[4], other.team)) {
+        this.team = data().deepCopy(fields()[4].schema(), other.team);
+        fieldSetFlags()[4] = true;
+      }
     }
 
     /**
@@ -214,6 +240,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       if (isValidValue(fields()[3], other.email)) {
         this.email = data().deepCopy(fields()[3].schema(), other.email);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.team)) {
+        this.team = data().deepCopy(fields()[4].schema(), other.team);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -372,6 +402,45 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       return this;
     }
 
+    /**
+      * Gets the value of the 'team' field.
+      * @return The value.
+      */
+    public java.lang.String getTeam() {
+      return team;
+    }
+
+    /**
+      * Sets the value of the 'team' field.
+      * @param value The value of 'team'.
+      * @return This builder.
+      */
+    public ace.tpg.developer.Person.Builder setTeam(java.lang.String value) {
+      validate(fields()[4], value);
+      this.team = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'team' field has been set.
+      * @return True if the 'team' field has been set, false otherwise.
+      */
+    public boolean hasTeam() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'team' field.
+      * @return This builder.
+      */
+    public ace.tpg.developer.Person.Builder clearTeam() {
+      team = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
     @Override
     public Person build() {
       try {
@@ -380,6 +449,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
         record.first_name = fieldSetFlags()[1] ? this.first_name : (java.lang.String) defaultValue(fields()[1]);
         record.last_name = fieldSetFlags()[2] ? this.last_name : (java.lang.String) defaultValue(fields()[2]);
         record.email = fieldSetFlags()[3] ? this.email : (java.lang.String) defaultValue(fields()[3]);
+        record.team = fieldSetFlags()[4] ? this.team : (java.lang.String) defaultValue(fields()[4]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

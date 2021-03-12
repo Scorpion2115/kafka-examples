@@ -1,11 +1,14 @@
 {
   "namespace": "ace.tpg.developer",
+  "compatibility": "BACKWARD",
   "type": "record",
   "name": "Person",
   "fields": [
     {"name": "id", "type": "int"},
     {"name": "first_name", "type": "string"},
     {"name": "last_name", "type": "string"},
-    {"name": "email", "type": "string"}
+    {"name": "email", "type": "string"},
+    // add an optional field with default content
+    {"name": "team", "type": "string", "default": "legend"}
   ]
 }

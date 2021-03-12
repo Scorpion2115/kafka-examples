@@ -18,16 +18,22 @@ public class ProducerMain {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
-        KafkaProducer<String, Purchase> producer = new KafkaProducer<String, Purchase>(props);
+        KafkaProducer<String, Person> producer = new KafkaProducer<String, Person>(props);
 
-        Purchase apples = new Purchase (1, "apples", 17);
-        producer.send(new ProducerRecord<String, Purchase>("inventory_purchases", apples.getId().toString(), apples));
 
-        Purchase oranges = new Purchase (2, "oranges", 5);
-        producer.send(new ProducerRecord<String, Purchase>("inventory_purchases", oranges.getId().toString(), oranges));
+        // Person kevin = new Person(21, "kevin", "gernett", "kg@nba.com");
+        // Add new fields
+        Person kevin = new Person(21, "kevin", "gernett", "kg@nba.com", "Timberwolves");
+        producer.send(new ProducerRecord<String, Person>("employees", kevin.getId().toString(), kevin));
 
-        Purchase bananas = new Purchase (3, "bananas", 21);
-        producer.send(new ProducerRecord<String, Purchase>("inventory_purchases", bananas.getId().toString(), bananas));
+        //Person tim  = new Person(21, "tim", "duncan", "td@nba.com");
+        // Add new fields
+        Person tim  = new Person(21, "tim", "duncan", "td@nba.com", "Spurs");
+        producer.send(new ProducerRecord<String, Person>("employees", tim.getId().toString(), tim));
+
+        Person michael  = new Person(23, "michael", "jordan", "mj@nba.com","Bulls");
+        producer.send(new ProducerRecord<String, Person>("employees", michael.getId().toString(), michael));
+
 
         producer.close();
     }
